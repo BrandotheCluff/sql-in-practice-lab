@@ -82,6 +82,10 @@ module.exports = {
         WHERE a.approved = true AND a.completed = true
         ORDER by a.date DESC;
         `)
+        .then(dbRes => {
+            res.status(200).send(dbRes[0])
+        })
+        .catch(err => console.log(err))
     },
 
     completeAppointment: (req,res) => {
@@ -93,7 +97,7 @@ module.exports = {
         WHERE appt_id = ${apptId}
         `)
         .then(dbRes => {
-            res.stats(200).send(dbRes[0])
+            res.status(200).send(dbRes[0])
         })
         .catch(err => console.log(err))
     }
